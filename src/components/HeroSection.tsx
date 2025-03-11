@@ -12,7 +12,6 @@ const HeroSection = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [displayText, setDisplayText] = useState("UI/UX Designer");
   const [showCursor, setShowCursor] = useState(true);
-  const [animationActive, setAnimationActive] = useState(false);
   
   // Track mouse position for parallax only
   const handleMouseMove = (e: MouseEvent) => {
@@ -32,7 +31,7 @@ const HeroSection = () => {
       imageRef.current.style.transform = `translate(${relativeX * -25}px, ${relativeY * -25}px)`;
     }
 
-    // Add glow effect that follows mouse for the name
+    // Remove hover effect logic for the name
     if (nameRef.current) {
       const nameRect = nameRef.current.getBoundingClientRect();
       const mouseX = e.clientX - nameRect.left;
@@ -40,10 +39,8 @@ const HeroSection = () => {
       
       if (mouseX > 0 && mouseX < nameRect.width && mouseY > 0 && mouseY < nameRect.height) {
         nameRef.current.style.textShadow = 'none';
-        setAnimationActive(true);
       } else {
         nameRef.current.style.textShadow = 'none';
-        setAnimationActive(false);
       }
     }
   };
@@ -184,7 +181,7 @@ const HeroSection = () => {
             <span className="inline">Hello, I'm </span>
             <span 
               ref={nameRef}
-              className={`text-primary inline-block w-full font-extrabold ${animationActive ? 'animate-pulse-fast' : ''}`}
+              className="text-primary inline-block w-full font-extrabold"
             >
               Edwin Shaju M
             </span>
