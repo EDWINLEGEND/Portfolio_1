@@ -9,8 +9,8 @@ import ProjectsSection from './ProjectsSection';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
 import ChatBot from './ChatBot';
-import CustomCursor from './CustomCursor';
 import LoadingScreen from './LoadingScreen';
+import CustomCursor from './CustomCursor';
 
 const ClientHome = () => {
   const [loading, setLoading] = useState(true);

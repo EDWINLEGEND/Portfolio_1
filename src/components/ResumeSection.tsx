@@ -1,11 +1,9 @@
 "use client";
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { useCursorHandlers } from '../hooks/useCursorHandlers';
 
 const ResumeSection = () => {
-  const buttonCursorHandlers = useCursorHandlers('button');
-  
   return (
     <section id="resume" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -169,7 +167,6 @@ const ResumeSection = () => {
             <a 
               href="#" 
               className="inline-block bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors"
-              {...buttonCursorHandlers}
             >
               Download PDF Resume
             </a>

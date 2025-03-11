@@ -3,23 +3,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { useCursorHandlers } from '../hooks/useCursorHandlers';
 
 const HeroSection = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLSpanElement>(null);
-  const buttonCursorHandlers = useCursorHandlers('button');
   const [hasLoaded, setHasLoaded] = useState(false);
   const [displayText, setDisplayText] = useState("UI/UX Designer");
   const [showCursor, setShowCursor] = useState(true);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState("default");
   const [animationActive, setAnimationActive] = useState(false);
   
-  // Track mouse position for cursor-based parallax and custom cursor
+  // Track mouse position for parallax only
   const handleMouseMove = (e: MouseEvent) => {
     if (!sectionRef.current || !imageRef.current) return;
     
@@ -32,17 +27,9 @@ const HeroSection = () => {
     const relativeX = (e.clientX - rect.left - centerX) / centerX;
     const relativeY = (e.clientY - rect.top - centerY) / centerY;
     
-    setMousePosition({ x: e.clientX, y: e.clientY });
-    
     // Move image in the opposite direction of mouse movements (inverted parallax)
     if (imageRef.current) {
       imageRef.current.style.transform = `translate(${relativeX * -25}px, ${relativeY * -25}px)`;
-    }
-    
-    // Custom cursor effect - single circle
-    if (cursorRef.current) {
-      cursorRef.current.style.left = `${e.clientX}px`;
-      cursorRef.current.style.top = `${e.clientY}px`;
     }
 
     // Add glow effect that follows mouse for the name
@@ -143,29 +130,12 @@ const HeroSection = () => {
     };
   }, []);
 
-  // Cursor handling for interactive elements
-  const handleCursorEnterButton = () => setCursorVariant("button");
-  const handleCursorLeave = () => setCursorVariant("default");
-
   return (
     <section 
       id="home" 
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden cursor-none"
+      className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden"
     >
-      {/* Custom Cursor - Single Circle */}
-      <div 
-        ref={cursorRef}
-        className={`fixed w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-difference transition-all duration-150 ${
-          cursorVariant === "default" ? "bg-white" : "bg-primary scale-150"
-        }`}
-        style={{ 
-          left: mousePosition.x, 
-          top: mousePosition.y,
-          transform: 'translate(-50%, -50%)'
-        }}
-      ></div>
-      
       {/* Darker Gradient Background with New Styling */}
       <div 
         className="absolute inset-0 z-0 bg-gradient-to-br from-black via-gray-950 to-indigo-950"
@@ -230,8 +200,6 @@ const HeroSection = () => {
             <Link 
               href="#work" 
               className="bg-primary text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105 transform duration-300 group"
-              onMouseEnter={handleCursorEnterButton}
-              onMouseLeave={handleCursorLeave}
             >
               <span className="relative z-10 inline-block group-hover:animate-bounce-subtle">View My Work</span>
               <span className="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/20 transition-all duration-300 blur-lg"></span>

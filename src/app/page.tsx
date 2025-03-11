@@ -6,7 +6,6 @@ import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import ChatBot from '../components/ChatBot';
-import CustomCursor from '../components/CustomCursor';
 import ClientHome from '../components/ClientHome';
 
 export default function Home() {

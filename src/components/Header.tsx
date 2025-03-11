@@ -2,12 +2,9 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useCursorHandlers } from '../hooks/useCursorHandlers';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const linkCursorHandlers = useCursorHandlers('link');
-  const buttonCursorHandlers = useCursorHandlers('button');
   
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +35,6 @@ const Header = () => {
           <Link 
             href="/" 
             className="text-xl font-bold text-white mb-4 md:mb-0"
-            {...linkCursorHandlers}
           >
             <span className="font-bold">Edwin</span> Shaju
           </Link>
@@ -47,36 +43,31 @@ const Header = () => {
           <nav className="flex justify-center space-x-8">
             <Link 
               href="#home" 
-              className="nav-link text-white text-lg font-medium hover:text-white/80" 
-              {...linkCursorHandlers}
+              className="nav-link text-white text-lg font-medium hover:text-white/80"
             >
               Home
             </Link>
             <Link 
               href="#about" 
-              className="nav-link text-white text-lg font-medium hover:text-white/80" 
-              {...linkCursorHandlers}
+              className="nav-link text-white text-lg font-medium hover:text-white/80"
             >
               About
             </Link>
             <Link 
               href="#work" 
-              className="nav-link text-white text-lg font-medium hover:text-white/80" 
-              {...linkCursorHandlers}
+              className="nav-link text-white text-lg font-medium hover:text-white/80"
             >
               Work
             </Link>
             <Link 
               href="#projects" 
-              className="nav-link text-white text-lg font-medium hover:text-white/80" 
-              {...linkCursorHandlers}
+              className="nav-link text-white text-lg font-medium hover:text-white/80"
             >
               Projects
             </Link>
             <Link 
               href="#contact" 
-              className="nav-link text-white text-lg font-medium hover:text-white/80" 
-              {...linkCursorHandlers}
+              className="nav-link text-white text-lg font-medium hover:text-white/80"
             >
               Contact
             </Link>

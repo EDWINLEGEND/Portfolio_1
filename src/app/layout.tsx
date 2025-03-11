@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import { CursorProvider } from "../context/CursorContext";
 
 // Import Poppins font with specific weights
 const poppins = Poppins({
@@ -24,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <body className="font-poppins">
-        <CursorProvider>
-          {children}
-        </CursorProvider>
+        {children}
       </body>
     </html>
   );
