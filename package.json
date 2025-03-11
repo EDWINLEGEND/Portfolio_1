@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-wrapper",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd portfolio && npm run dev",
+    "build": "cd portfolio && npm run build",
+    "start": "cd portfolio && npm run start",
+    "lint": "cd portfolio && npm run lint"
+  }
+} 
