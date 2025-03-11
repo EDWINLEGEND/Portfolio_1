@@ -8,7 +8,6 @@ const HeroSection = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const nameRef = useRef<HTMLSpanElement>(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [displayText, setDisplayText] = useState("UI/UX Designer");
   const [showCursor, setShowCursor] = useState(true);
@@ -30,27 +29,13 @@ const HeroSection = () => {
     if (imageRef.current) {
       imageRef.current.style.transform = `translate(${relativeX * -25}px, ${relativeY * -25}px)`;
     }
-
-    // Remove hover effect logic for the name
-    if (nameRef.current) {
-      const nameRect = nameRef.current.getBoundingClientRect();
-      const mouseX = e.clientX - nameRect.left;
-      const mouseY = e.clientY - nameRect.top;
-      
-      if (mouseX > 0 && mouseX < nameRect.width && mouseY > 0 && mouseY < nameRect.height) {
-        nameRef.current.style.textShadow = 'none';
-      } else {
-        nameRef.current.style.textShadow = 'none';
-      }
-    }
   };
   
   // Custom typing animation effect
   useEffect(() => {
     const titles = [
       "UI/UX Designer",
-      "Frontend Developer",
-      "UI/UX Designer & Frontend Developer"
+      "Frontend Developer"
     ];
     let currentIndex = 0;
     let charIndex = 0;
@@ -114,11 +99,6 @@ const HeroSection = () => {
       sectionRef.current.addEventListener('mousemove', handleMouseMove);
     }
     
-    // Set initial glow effect for name
-    if (nameRef.current) {
-      nameRef.current.style.textShadow = 'none';
-    }
-    
     return () => {
       clearTimeout(timer);
       if (sectionRef.current) {
@@ -179,10 +159,7 @@ const HeroSection = () => {
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 leading-tight text-white">
             <span className="inline">Hello, I'm </span>
-            <span 
-              ref={nameRef}
-              className="text-primary inline-block w-full font-extrabold"
-            >
+            <span className="text-primary inline-block w-full font-extrabold">
               Edwin Shaju M
             </span>
           </h1>
@@ -217,12 +194,12 @@ const HeroSection = () => {
         >
           <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
             {/* Rotating border effect */}
-            <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-rotation-slow"></div>
-            <div className="absolute inset-2 rounded-full border-2 border-primary animate-rotation-medium" style={{ animationDirection: 'reverse' }}></div>
+            <div className="absolute inset-0 rounded-full border-4 border-white/30"></div>
+            <div className="absolute inset-2 rounded-full border-2 border-primary"></div>
             
-            {/* Circular frame with gradient border */}
-            <div className="relative w-full h-full rounded-full p-1 bg-gradient-to-br from-white via-primary to-purple-500 shadow-xl shadow-purple-900/20 animate-pulse-slow">
-              <div className="w-full h-full overflow-hidden rounded-full">
+            {/* Circular frame */}
+            <div className="relative w-full h-full rounded-full p-1">
+              <div className="w-full h-full overflow-hidden rounded-full bg-white">
                 <Image
                   src="/images/edwin.png"
                   alt="Edwin Shaju - UI/UX Designer & Frontend Developer"
@@ -233,12 +210,6 @@ const HeroSection = () => {
                 />
               </div>
             </div>
-            
-            {/* Animated decorative elements */}
-            <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-primary/80 blur-sm animate-float-medium"></div>
-            <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-purple-600/50 blur-sm animate-float-slow"></div>
-            <div className="absolute top-1/2 -right-4 w-12 h-12 rounded-full bg-blue-600/70 blur-sm animate-ping-slow"></div>
-            <div className="absolute bottom-1/2 -left-4 w-10 h-10 rounded-full bg-indigo-600/70 blur-sm animate-ping-slow" style={{ animationDelay: '1s' }}></div>
           </div>
         </div>
       </div>

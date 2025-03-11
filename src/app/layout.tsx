@@ -4,10 +4,9 @@ import { Poppins } from "next/font/google";
 
 // Import Poppins font with specific weights
 const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
@@ -17,12 +16,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={poppins.variable}>
-      <body className="font-poppins">
+    <html lang="en" className={poppins.className}>
+      <body>
         {children}
       </body>
     </html>
